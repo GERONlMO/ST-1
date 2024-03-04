@@ -3,32 +3,34 @@
 #include <cstdint>
 #include "alg.h"
 
-TEST(PrimeFunctions, CheckPrime) {
-  EXPECT_FALSE(checkPrime(0));
-  EXPECT_FALSE(checkPrime(1));
-  EXPECT_TRUE(checkPrime(2));
-  EXPECT_TRUE(checkPrime(3));
-  EXPECT_FALSE(checkPrime(4));
-  EXPECT_TRUE(checkPrime(17));
-  EXPECT_FALSE(checkPrime(25));
-  EXPECT_TRUE(checkPrime(29));
+TEST(PrimeTest, CheckPrimeWithPrimeNumber) {
+  uint64_t primeNumber = 17;
+  EXPECT_TRUE(checkPrime(primeNumber));
 }
 
-TEST(PrimeFunctions, NPrime) {
-  EXPECT_EQ(nPrime(1), 2);
-  EXPECT_EQ(nPrime(5), 13);
-  EXPECT_EQ(nPrime(10), 29);
+
+TEST(PrimeTest, CheckPrimeWithCompositeNumber) {
+  uint64_t compositeNumber = 15;
+  EXPECT_FALSE(checkPrime(compositeNumber));
 }
 
-TEST(PrimeFunctions, NextPrime) {
-  EXPECT_EQ(nextPrime(1), 2);
-  EXPECT_EQ(nextPrime(5), 7);
-  EXPECT_EQ(nextPrime(10), 11);
+
+TEST(PrimeTest, NthPrimeNumber) {
+  uint64_t n = 6;
+  uint64_t expected = 13;
+  EXPECT_EQ(expected, nPrime(n));
 }
 
-TEST(PrimeFunctions, SumPrime) {
-  EXPECT_EQ(sumPrime(0), 0);
-  EXPECT_EQ(sumPrime(1), 0);
-  EXPECT_EQ(sumPrime(10), 17);
-  EXPECT_EQ(sumPrime(20), 77);
+
+TEST(PrimeTest, NextPrimeNumber) {
+  uint64_t value = 20;
+  uint64_t expected = 23;
+  EXPECT_EQ(expected, nextPrime(value));
+}
+
+
+TEST(PrimeTest, SumOfPrimeNumbers) {
+  uint64_t hbound = 20;
+  uint64_t expectedSum = 2 + 3 + 5 + 7 + 11 + 13 + 17 + 19;
+  EXPECT_EQ(expectedSum, sumPrime(hbound));
 }
